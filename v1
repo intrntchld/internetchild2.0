@@ -1,0 +1,113 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Windows 98 Music Player</title>
+</head>
+<body>
+  <div id="desktop" class="desktop">
+    <div class="icon" onclick="showError('My Computer')">My Computer</div>
+    <div class="icon" onclick="showError('Network')">Network</div>
+    <div class="icon" onclick="showError('Trash')">Recycle Bin</div>
+    <div class="icon" onclick="showError('Documents')">Documents</div>
+    <div class="icon" onclick="showError('Settings')">Settings</div>
+  </div>
+
+  <div id="musicPlayer" class="hidden">
+    <div class="title-bar">
+      <div class="title-bar-text">Windows 98 Music Player</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="stopMusic()"></button>
+      </div>
+    </div>
+    <div id="radioPage" class="content">
+      <button onclick="playMusic()">Play Music</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.desktop {
+  background: #008080;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.icon {
+  background: #C0C0C0;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#musicPlayer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.title-bar {
+  background: #008080;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-bar-controls button {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.content {
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+// script.js
+function showError(icon) {
+  alert(`Error: ${icon} is not accessible. This is a simulation.`);
+}
+
+function playMusic() {
+  const radioPage = document.getElementById('radioPage');
+  const movingIcon = document.createElement('div');
+  movingIcon.classList.add('moving-icon');
+  radioPage.appendChild(movingIcon);
+  // You can add the code to play music here (file upload functionality).
+}
+
+function stopMusic() {
+  const movingIcon = document.querySelector('.moving-icon');
+  if (movingIcon) {
+    movingIcon.remove();
+    // Add code to stop the music here.
+  }
+}
+
